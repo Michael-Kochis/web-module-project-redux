@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { addMovie } from './../actions/movieActions';
 import { connect } from 'react-redux';
+import  reducer  from '../reducers/movieReducer';
 
 import { Link, useHistory } from 'react-router-dom';
 
@@ -23,6 +24,11 @@ const AddMovieForm = (props) => {
     }
 
     const handleSubmit = (e) => {
+        e.preventDefault();
+        const neoID = Date.now();
+        setMovie({...movie, id: neoID});
+        props.addMovie(movie);
+        push("/movies");
     }
 
     const { title, director, genre, metascore, description } = movie;
@@ -67,4 +73,4 @@ const AddMovieForm = (props) => {
     </div>);
 }
 
-export default AddMovieForm;
+export default connect(reducer, {addMovie})(AddMovieForm);

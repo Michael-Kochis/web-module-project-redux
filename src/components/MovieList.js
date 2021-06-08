@@ -7,7 +7,7 @@ import { connect } from 'react-redux'
 
 const MovieList = (props)=> {
 
-    const movies = props.movies;
+    const movies = props.movie.movies;
 
      return (
         <div className="col">
